@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+          body {
+            background-image: url();
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+          button{
+            background: radial-gradient(rgb(219, 30, 127),rgb(70, 227, 251));
+          border-width: 0px;
+
+          }
+          .pacmann{
+            position: absolute;
+            top: 0px;
+            left: 200px;
+            width: 60px;
+          }
+          .card{
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+          }
+          .row{
+              display: flex;
+              flex-direction: row;
+          }
+    </style>
+    <script>
+      posY = 0;
+      posX = 200;
+      var beginDown;
+      var beginUp;
+      var beginLeft;
+      var beginRight;
+
+        function startDown(){
+            var packman = document.getElementById('packman');
+            packman.style.transform='rotate(90deg)'
+            clearInterval(beginUp)
+            clearInterval(beginLeft)
+            clearInterval(beginRight)
+            beginDown=setInterval(down,400)
+        }
+        function startup(){
+            var packman = document.getElementById('packman');
+            packman.style.transform='rotate(-90deg)'
+            clearInterval(beginDown)
+            clearInterval(beginLeft)
+            clearInterval(beginRight)
+            beginup=setInterval(up,400)
+        }
+        function startleft(){
+            var packman = document.getElementById('packman');
+            packman.style.transform='rotate(-180deg)'
+            clearInterval(beginUp)
+            clearInterval(beginDown)
+            clearInterval(beginRight)
+            beginDown=setInterval(left,400)
+        }
+        function startright(){
+            var packman = document.getElementById('packman');
+            packman.style.transform='rotate(0deg)'
+            clearInterval(beginDown)
+            clearInterval(beginLeft)
+            clearInterval(beginUp)
+            beginDown=setInterval(right,400)
+        }
+
+      function down() {
+        posY += 10;
+        var packman = document.getElementById("packman");
+        packman.style.top = posY + "px";
+      }
+      function up() {
+        posY -= 10;
+        var packman = document.getElementById("packman");
+        packman.style.top = posY + "px";
+      }
+      function left() {
+        posX -= 10;
+        var packman = document.getElementById("packman");
+        packman.style.left = posX + "px";
+      }
+      function right() {
+        posX += 10;
+        var packman = document.getElementById("packman");
+        packman.style.left = posX + "px";
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <div class="card">
+        <div><button onclick="startup()">up</button></div>
+        <div class="row">
+          <div><button onclick="startleft()">left</button></div>
+          <div><button onclick="startDown()">down</button></div>
+          <div><button onclick="startright()">right</button></div>
+        </div>
+      </div>
+
+      <div>
+        <img class="pacmann" id="packman" src="images/pacman.png" alt="    " />
+      </div>
+    </div>
+  </body>
+</html>
